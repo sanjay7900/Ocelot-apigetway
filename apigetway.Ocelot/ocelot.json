@@ -1,0 +1,78 @@
+{
+  "GlobalConfiguration": {
+    "BaseUrl": "https://localhost:7141"
+  },
+  "ReRoutes": [
+    {
+      "UpstreamPathTemplate": "Firstgetway/ShowPayment",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamPathTemplate": "/api/First/ShowPayments",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7017
+        }
+      ]
+    },
+
+    {
+      "UpstreamPathTemplate": "Secondgetway/Write/{name}",
+      "UpstreamHttpMethod": [ "GET" ],
+      "DownstreamPathTemplate": "/api/Second/Write?name={name}",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7195
+        }
+      ]
+    },
+
+    {
+      "UpstreamPathTemplate": "Thirdgetway/Posting",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamPathTemplate": "/api/Third/Posting",
+      "DownstreamScheme": "https",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 7057
+        }
+      ]
+    }
+  ]
+}
+//========================================================================================================
+
+
+
+//{
+//  "ReRoutes": [
+//    {
+//      "DownstreamPathTemplate": "/api/products/{action}",
+//      "UpstreamPathTemplate": "/products/{action}",
+//      "UpstreamHttpMethod": [ "GET", "POST", "PUT", "DELETE" ],
+//      "DownstreamScheme": "http",
+//      "DownstreamHostAndPorts": [
+//        {
+//          "Host": "service1",
+//          "Port": 5001
+//        },
+//        {
+//          "Host": "service2",
+//          "Port": 5002
+//        }
+//      ],
+//      "LoadBalancerOptions": {
+//        "Type": "RoundRobin" // Load balancing strategy (RoundRobin, LeastConnection, etc.)
+//      },
+//      "RateLimitOptions": {
+//        "ClientIdHeader": "Client-Id", // Use this header to identify the client
+//        "QuotaExceededResponseCode": 429, // Status code for rate-limited clients
+//        "Requests": 10, // Max requests per time window
+//        "Seconds": 60 // Time window in seconds
+//      }
+//    }
+//  ]
+//}
